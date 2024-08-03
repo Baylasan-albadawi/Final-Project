@@ -9,6 +9,6 @@ export class Category extends BaseEntity {
     @Column({ length: 255, nullable: false })
     name: string;
 
-    @ManyToMany(()=> Product, (product)=> product.categoies)
+    @ManyToMany(()=> Product, (product)=> product.categories)
     products: Product[]
 }

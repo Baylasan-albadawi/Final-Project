@@ -39,7 +39,7 @@ const createProduct =async( payload: Product, shopId: number, categoryIds: numbe
         newProduct.name = payload.name
         newProduct.price = payload.price
         newProduct.shop = shop
-        newProduct.categoies = categories
+        newProduct.categories = categories
 
       
     
