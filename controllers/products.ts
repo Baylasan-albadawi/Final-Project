@@ -13,7 +13,7 @@ const getAllProducts=async (req: Request, res: Response)=>{
         products: Product
     })
 }
-const createProduct =async( products: Product, shopId: number, categoryIds: number[]) => {
+const createProduct =async( payload: Product, shopId: number, categoryIds: number[]) => {
     const shop = await Shop.findOne({ where: {id: shopId}})
     
         if (!shop) {
@@ -26,8 +26,8 @@ const createProduct =async( products: Product, shopId: number, categoryIds: numb
         }
     const product = await Product.findOne({
         where: {
-                 name: products.name,
-                 shops: Shop
+                 name: payload.name,
+                 shop: shop
                 }
         });
     
@@ -35,11 +35,13 @@ const createProduct =async( products: Product, shopId: number, categoryIds: numb
             throw new AppError("Product already exists", 409, true)
         }
         
-        const newProduct = Product.create({
-            ...products,
-            shop,
-            categories
-        })
+        const newProduct = new Product()
+        newProduct.name = payload.name
+        newProduct.price = payload.price
+        newProduct.shop = shop
+        newProduct.categoies = categories
+
+      
     
         return newProduct.save()
 }

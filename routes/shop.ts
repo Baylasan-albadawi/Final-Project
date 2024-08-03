@@ -10,8 +10,6 @@ router.get('/:id', async(req: Request, res: Response, next: NextFunction)=>{
     try {
         const shopId = Number(req.params.id)
         const shop = await getSingleShop(shopId)
-
-        console.log("entered");
         res.json({
             message: "This is the Shop you're looking for:",
             shop: shop
@@ -21,6 +19,7 @@ router.get('/:id', async(req: Request, res: Response, next: NextFunction)=>{
         next(error)
     }
 })
+
 router.post("/", async (req: Request, res: Response, next: NextFunction) => {
     try {
 

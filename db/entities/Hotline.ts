@@ -1,4 +1,4 @@
-import { BaseEntity, Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Shop } from "./Shop.js";
 
 @Entity("hotline")
@@ -10,5 +10,11 @@ export class Hotline extends BaseEntity {
     hotlineNumber: string;
 
     @OneToOne(() => Shop, shop => shop.hotline)
+    @JoinColumn(
+        {
+            name: "hotline",
+            referencedColumnName: "id"
+        }
+    )
     shop: Partial<Shop>
 }

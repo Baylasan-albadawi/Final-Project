@@ -24,15 +24,10 @@ export class Shop extends BaseEntity {
         }
     }
 
-    @OneToMany(()=>Product, product=> product.shops)
-    shops:Shop
+    @OneToMany(() => Product, (product) => product.shop)
+    products: Product[];
 
-    @OneToOne(() => Shop, shop => shop.hotline)
-    @JoinColumn(
-        {
-            name: "hotline",
-            referencedColumnName: "id"
-        }
-    )
-    hotline:Partial<Hotline>
+    @OneToOne(() => Hotline, (hotline) => hotline.shop)
+    hotline: Hotline;
 }
+

@@ -5,11 +5,11 @@ import { AppError } from "../errors/AppErrors.js";
 import { Hotline } from "../db/entities/Hotline.js";
 
 const getAllShops=async (req: Request, res: Response)=>{
-    const shops = await Shop.find()
+    const shop = await Shop.find()
 
     res.json({
         message: "Getting all shops",
-        books: shops
+        shops: shop
     })
 }
 

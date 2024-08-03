@@ -1,6 +1,6 @@
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, ManyToMany, ManyToOne, JoinTable } from "typeorm";
-import { Shop } from "./Shop.js";
 import { Category } from "./Category.js";
+import { Shop } from "./Shop.js";
 
 @Entity("product")
 export class Product extends BaseEntity {
@@ -13,8 +13,8 @@ export class Product extends BaseEntity {
     @Column({length: 255})
     price: string;
 
-    @ManyToOne(()=>Shop, shop=>shop.shops)
-    shops: Partial<Shop>
+    @ManyToOne(() => Shop, (shop) => shop.products)
+    shop: Shop;
 
     @ManyToMany(() => Category, category => category.products)
     @JoinTable({
@@ -28,7 +28,5 @@ export class Product extends BaseEntity {
             referencedColumnName: "id"
         }
     })
-    categoies: Partial<Category[]>;
-
-
+    categoies: Category[];
 }
