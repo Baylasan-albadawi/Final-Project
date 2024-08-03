@@ -6,11 +6,11 @@ import { Category } from "../db/entities/Category.js";
 import { In } from "typeorm";
 
 const getAllProducts=async (req: Request, res: Response)=>{
-    const products = await Product.find()
+    const product = await Product.find()
 
     res.json({
         message: "Getting all Products",
-        products: Product
+        product: Product
     })
 }
 const createProduct =async( payload: Product, shopId: number, categoryIds: number[]) => {

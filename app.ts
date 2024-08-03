@@ -16,7 +16,7 @@ app.use(express.json())
 app.use("/shops", shopRoute);
 app.use("/products",productRoute)
 app.use("/hotlines", hotlineRoute);
-app.use("/categories", categoryRoute)
+app.use("/category", categoryRoute)
 
 app.use(customErrorHandler)
 app.use(DefaultErrorHandler)
