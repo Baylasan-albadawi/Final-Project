@@ -17,19 +17,17 @@ export class Product extends BaseEntity {
     shop: Shop;
 
     @ManyToMany(() => Category, (category) => category.products)
+    
+    @JoinTable({
+    name: "product-category",
+    joinColumn: {
+         name: "productId",
+         referencedColumnName: "id"
+    },
+    inverseJoinColumn: {
+        name: "categoryNo",
+        referencedColumnName: "id"
+    }
+})
     categories: Category[];
-
-    // @ManyToMany(() => Category, category => category.products)
-    // @JoinTable({
-    //     name: "product-category",
-    //     joinColumn: {
-    //         name: "productId",
-    //         referencedColumnName: "id"
-    //     },
-    //     inverseJoinColumn: {
-    //         name: "categoryNo",
-    //         referencedColumnName: "id"
-    //     }
-    // })
-    // categoies: Category[];
 }

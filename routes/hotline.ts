@@ -8,9 +8,9 @@ router.get("/", getHotlines)
 router.post("/", async (req: Request, res:Response, next: NextFunction) => {
     try {
         const hotline = req.body
-        if (!hotline.hotlineNumber || !hotline.id) {
+        if (!hotline.hotlineNumber) {
             return res.status(400).json({
-                message: "Some fields are missing",
+                message: "Hotline number is missing",
                 success: false,
             })
         }
@@ -20,7 +20,7 @@ router.post("/", async (req: Request, res:Response, next: NextFunction) => {
         res.status(201).json({
             message: "Hotline added successfully",
             success: true,
-            data: newHotline
+            hotline: newHotline
         })
 
     } catch (error) {
